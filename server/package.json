@@ -1,0 +1,40 @@
+{
+  "name": "keystone-notary-server",
+  "private": true,
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=20 <21",
+    "npm": ">=10"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint .",
+    "verify:security": "npm audit --omit=dev || true"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.14",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "eslint": "^9.34.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0"
+  },
+  "overrides": {
+    "glob": "^10.3.12",
+    "rimraf": "^5.0.5",
+    "minimatch": "^9.0.5",
+    "brace-expansion": "^2.0.1"
+  }
+}

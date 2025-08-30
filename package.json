@@ -1,0 +1,14 @@
+{
+  "name": "keystone-web",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^9.34.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0"
+  },
+  "engines": {
+    "node": ">=20 <21",
+    "npm": ">=10"
+  }
+}

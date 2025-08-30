@@ -1,0 +1,49 @@
+{
+  "name": "keystone-notary-god-tier",
+  "private": true,
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=20 <21",
+    "npm": ">=10"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "doctor:deps": "npm ls glob inflight rimraf || true",
+    "verify:security": "npm audit --omit=dev || true"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "gsap": "^3.12.5",
+    "lenis": "^1.0.41",
+    "lucide-react": "^0.437.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "leaflet": "^1.9.4",
+    "react-router-dom": "^6.27.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.24",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.3",
+    "@lhci/cli": "^0.15.1",
+    "pa11y": "^9.0.0",
+    "eslint": "^9.34.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0"
+  },
+  "overrides": {
+    "glob": "^10.3.12",
+    "rimraf": "^5.0.5",
+    "minimatch": "^9.0.5",
+    "brace-expansion": "^2.0.1"
+  }
+}

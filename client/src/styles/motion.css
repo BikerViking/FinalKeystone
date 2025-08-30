@@ -1,0 +1,36 @@
+
+/* motion.css: direction-aware animation utilities */
+@media (prefers-reduced-motion: reduce) {
+  .anim, .anim-slide, .anim-fade, .anim-scale { animation: none !important; transition: none !important; }
+}
+@keyframes slide-in-down { from { transform: translate3d(0,-24px,0); opacity: 0 } to { transform: none; opacity: 1 } }
+@keyframes slide-in-up   { from { transform: translate3d(0, 24px,0); opacity: 0 } to { transform: none; opacity: 1 } }
+@keyframes fade-in       { from { opacity: 0 } to { opacity: 1 } }
+@keyframes scale-in      { from { transform: scale(.96); opacity:.001 } to { transform: scale(1); opacity:1 } }
+html[data-dir="down"] .anim-slide { animation: slide-in-down 550ms cubic-bezier(.22,1,.36,1) both }
+.stagger > * { --d: 0 }
+.stagger > * { animation-delay: calc( var(--d, 0) * 60ms ); }
+.card-stack { position: relative; --stack-progress: 0; --stack-gap: 20px; --stack-depth: 12px; --stack-scale: 0.02; perspective: 1000px; }
+.card-stack .card { position: relative; will-change: transform; transition: transform 300ms cubic-bezier(.2,.8,.2,1), box-shadow 300ms ease; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+.card-stack .card:nth-child(1){ z-index:5 } .card-stack .card:nth-child(2){ z-index:4 } .card-stack .card:nth-child(3){ z-index:3 } .card-stack .card:nth-child(4){ z-index:2 } .card-stack .card:nth-child(5){ z-index:1 }
+.card-stack .card { --i:0; margin-top: calc(var(--stack-gap) * (1 - var(--stack-progress)));
+  transform: translate3d(0, calc( var(--i) * var(--stack-depth) * var(--stack-progress) * -1 ), 0)
+             scale(calc(1 - (var(--i) * var(--stack-scale) * var(--stack-progress)))); }
+
+:root{ --eas:cubic-bezier(.22,1,.36,1); --dur:.55s; --stg:60ms; }
+
+[data-motion]{ will-change: transform, opacity; }
+
+@media (prefers-reduced-motion: reduce){ [data-motion]{ transition:none!important; transform:none!important; opacity:1!important } }
+
+[data-motion="reveal-up"]{ --dy:calc(var(--dir,1)*18px); opacity:calc(.6 + (.4 * var(--vis,0))); transform:translate3d(0, calc((1 - var(--vis,0)) * var(--dy) * -1), 0); transition: transform var(--dur) var(--eas), opacity var(--dur) var(--eas);}
+
+[data-motion="tilt-in"]{ --sgn:calc(var(--dir,1)); transform:perspective(800px) translateY(calc((1 - var(--vis,0)) * 20px)) rotateX(calc((1 - var(--vis,0)) * 6deg * var(--sgn)*-1)); opacity:calc(.5 + (.5 * var(--vis,0))); transition: transform var(--dur) var(--eas), opacity var(--dur) var(--eas);}
+
+[data-motion="slide-lr"]{ --dx:calc(var(--dir,1) * -24px); transform:translate3d(calc((1 - var(--vis,0)) * var(--dx)), 0, 0); opacity:calc(.5 + (.5 * var(--vis,0))); transition: transform var(--dur) var(--eas), opacity var(--dur) var(--eas);}
+
+[data-motion] > *{ transition-delay: calc(var(--stg) * var(--i,0)); } .stagger > * { counter-increment:item; --i: calc(var(--i,0) + (counter(item) - 1)); }
+
+.motion-smooth{ will-change: transform, opacity; transform: translateZ(0); }
+
+@media (max-width: 640px){ :root{ --stg:50ms } }
